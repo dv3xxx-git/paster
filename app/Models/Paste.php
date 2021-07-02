@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Paste extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'timer',
+        'text',
+        'hash',
+    ];
 }

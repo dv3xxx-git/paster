@@ -18,9 +18,10 @@ class CreatePastesTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->dateTime('timer')->nullable();
-            $table->string('link');
+            $table->string('text');
             $table->boolean('accept_timer')->default(0);
             $table->boolean('accept_public')->default(0);
+            $table->string('hash')->nullable();
         });
     }
 

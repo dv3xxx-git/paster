@@ -2,22 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PasteRequest;
 use App\Models\Paste;
-use App\Services\FileService;
+use App\Services\HashService;
 use Illuminate\Http\Request;
+
 
 class PasteController extends Controller
 {
     public function index()
     {
-        $pastes = Paste::whereAcceptTimer(0)->whereAcceptPublic(0)->paginate(10);
+        $pastes = Paste::whereAcceptTimer(0)->whereAcceptPublic(0)
+            ->orderByRaw('created_at DESC')
+            ->paginate(10);
+
         return view('home', compact('pastes'));
     }
 
-    public function store(Request $request)
+    public function store(PasteRequest $request, Paste $paste)
     {
+        $paste->fill($request->validated());
+        $paste->save();
 
-        $chat_message['files'] = FileService::fileCreator($request->text);
-        return redirect('/');
+        $hash = HashService::createHash($paste->id);
+        $paste->update(['hash' => $hash]);
+
+        return redirect('paste.index');
+    }
+
+    public function show(Paste $paste)
+    {
+       
+        return  dd(1);
     }
 }

@@ -14,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::group(function () {
-    Route::resource('/', PasteController::class);
-// });
+    Route::resource('/paste', PasteController::class);
+
