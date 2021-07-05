@@ -22,7 +22,7 @@ class SocialService
         if ($db_user) {
             return $db_user->fill(['name' => $name]);
         }
-
+        
         return User::create($data);
     }
 }

@@ -15,4 +15,16 @@ class Paste extends Model
         'text',
         'hash',
     ];
+
+    public function getAcceptPublicAttribute($value)
+    {
+        $statusType = [
+            0 => 'public',
+            1 => 'non public',
+        ];
+
+        return $statusType[$value];
+    }
+
+
 }

@@ -15,13 +15,12 @@ use App\Http\Controllers\SocialController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/vk/auth', [SocialController::class, 'vk'])->name('vk.auth');
     Route::get('/vk/auth/callback', [SocialController::class, 'callback']);
 });
 
 Route::resource('/paste', PasteController::class);
-Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
