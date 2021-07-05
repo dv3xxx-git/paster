@@ -12,6 +12,19 @@
     <form method="POST" action="/paste">
         @csrf
         <input type="text" name="name" placeholder="name" require>
+        <select name="accept_public" id="accept_public">
+            <option value="0">public</option>
+            <option value="1">unlisted</option>
+        </select>
+        <select name="timer" id="timer">
+            <option value="0">none</option>
+            <option value="1">10 min</option>
+            <option value="2">1 hour</option>
+            <option value="3">3 hours</option>
+            <option value="4">1 day</option>
+            <option value="5">1 week</option>
+            <option value="6">1 month</option>
+        </select>
         <textarea type="text" name="text"></textarea>
         <button>save</button>
     </form>

@@ -26,6 +26,7 @@ class PasteRequest extends FormRequest
         return [
             'name' => 'required',
             'text' => 'required',
+            'accept_public' => 'required',
         ];
     }
 }

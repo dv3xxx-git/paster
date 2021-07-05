@@ -14,6 +14,7 @@ class Paste extends Model
         'timer',
         'text',
         'hash',
+        'accept_public',
     ];
 
     public function getAcceptPublicAttribute($value)
@@ -26,5 +27,9 @@ class Paste extends Model
         return $statusType[$value];
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
 }
