@@ -30,9 +30,8 @@ class PasteController extends Controller
         return redirect('paste.index');
     }
 
-    public function show(Paste $paste)
+    public function show($hash)
     {
-       
         return  dd(1);
     }
 }
