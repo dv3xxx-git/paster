@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\PasteController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SocialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/vk/auth', [SocialController::class, 'vk'])->name('vk.auth');
+    Route::get('/vk/auth/callback', [SocialController::class, 'callback']);
 });
+
+Route::resource('/paste', PasteController::class);
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
