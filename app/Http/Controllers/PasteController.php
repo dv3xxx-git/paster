@@ -16,7 +16,7 @@ class PasteController extends Controller
             ->orderByRaw('created_at DESC')
             ->paginate(10);
 
-        return view('home', compact('pastes'));
+        return view('pastes', compact('pastes'));
     }
 
     public function store(PasteRequest $request, Paste $paste)
@@ -27,7 +27,7 @@ class PasteController extends Controller
         $hash = HashService::createHash($paste->id);
         $paste->update(['hash' => $hash]);
 
-        return redirect('paste.index');
+        return redirect('paste');
     }
 
     public function show($hash)
