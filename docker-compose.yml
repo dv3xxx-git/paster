@@ -20,7 +20,7 @@ services:
         depends_on:
             - mysql
     mysql:
-        image: 'mysql:8.0'
+        image: 'mysql:8.0.20'
         ports:
             - '${FORWARD_DB_PORT:-3360}:3360'
         environment:
