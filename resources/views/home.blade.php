@@ -1,29 +1,23 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
-    <title>Home</title>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-</head>
-
-<body class="antialiased">
-    <div style="width: 50%;">
-        @foreach($pastes as $paste)
-        <a href="">{{$paste->name}}</a>
-        </br>
-        @endforeach
+                    {{ __('You are logged in!') }}
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <form method="POST" action="/">
-            @csrf
-            <input type="text" name="name" placeholder="name" require>
-            <textarea type="text" name="text"></textarea>
-            <button>save</button>
-        </form>
-        </dib>
-</body>
-
-</html>
+</div>
+@endsection
