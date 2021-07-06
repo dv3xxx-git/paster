@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+@if(count($new_paste) > 0)
+<h3>Ваша ссылка: <a href="{{route('paste.show',$new_paste->hash)}}"></a></h3>
+@endif
+<br>
 <div style="width: 50%;">
     @foreach($pastes as $paste)
     <a href="{{route('paste.show',$paste->hash)}}">{{$paste->name}}</a>
@@ -28,5 +32,6 @@
         <textarea type="text" name="text"></textarea>
         <button>save</button>
     </form>
-    </div>
+</div>
+@include('last_paste')
 @endsection

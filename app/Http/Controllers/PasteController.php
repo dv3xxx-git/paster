@@ -16,7 +16,7 @@ class PasteController extends Controller
         // dd(Auth::check());
         $pastes = Paste::whereAcceptTimer(0)->whereAcceptPublic(0)
             ->orderByRaw('created_at DESC')
-            ->paginate(10);
+            ->get();
 
         return view('pastes', compact('pastes'));
     }
@@ -37,16 +37,20 @@ class PasteController extends Controller
         if ($request->timer != '0') {
             $paste->timer = Carbon::now()->add($timer[$request->timer]);
         }
+        if (Auth::user()){
+            $paste->user_id = Auth::user()->id;
+        }
         $paste->save();
 
         $hash = HashService::createHash($paste->id);
         $paste->update(['hash' => $hash]);
-
-        return redirect('paste');
+        return redirect('paste')->with(['new_paste' => $paste]);
     }
 
     public function show($hash)
     {
-        return  dd(1);
+        $paste = Paste::whereHash($hash)->first();
+        
+        return view('show', compact('paste'));
     }
 }
