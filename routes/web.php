@@ -4,6 +4,7 @@ use App\Http\Controllers\PasteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------

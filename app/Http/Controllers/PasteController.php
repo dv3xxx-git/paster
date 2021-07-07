@@ -13,7 +13,6 @@ class PasteController extends Controller
 {
     public function index()
     {
-        // dd(Auth::check());
         $pastes = Paste::whereAcceptTimer(0)->whereAcceptPublic(0)
             ->orderByRaw('created_at DESC')
             ->paginate(10);
@@ -36,6 +35,9 @@ class PasteController extends Controller
         $paste->fill($request->validated());
         if ($request->timer != '0') {
             $paste->timer = Carbon::now()->add($timer[$request->timer]);
+        }
+        if(Auth::check()){
+            $paste->user_id = Auth::check();
         }
         $paste->save();
 

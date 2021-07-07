@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Providers\RouteServiceProvider;
 use App\Services\SocialService;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
@@ -23,7 +24,7 @@ class SocialController extends Controller
         $user_vk = SocialService::socailNet($user);
         if ($user_vk){
             Auth::login($user_vk);
-            return redirect()->route('paste');
+            return redirect(RouteServiceProvider::HOME);
         }
         return back(400);
     }
