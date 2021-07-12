@@ -27,6 +27,7 @@ class PasteRequest extends FormRequest
             'name' => 'required',
             'text' => 'required',
             'accept_public' => 'required',
+            'change_lang' => 'required',
         ];
     }
 }

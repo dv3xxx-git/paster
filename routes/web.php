@@ -22,7 +22,7 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/vk/auth', [SocialController::class, 'vk'])->name('vk.auth');
     Route::get('/vk/auth/callback', [SocialController::class, 'callback']);
 });
-
+Route::get('/user', [PasteController::class, 'userPastes'])->middleware('auth')->name('privePaste');
 Route::resource('/paste', PasteController::class);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -43,13 +43,29 @@ class PasteController extends Controller
 
         $hash = HashService::createHash($paste->id);
         $paste->update(['hash' => $hash]);
-        return redirect('paste')->with(['new_paste' => $paste]);
+        return view('hash', compact('paste'));
     }
 
     public function show($hash)
     {
-        $paste = Paste::whereHash($hash)->first();
+        $paste = Paste::whereHash($hash)->whereAcceptTimer(0)->first();
+        
+        if ($paste->accept_public == 'private'){
+            if (!Auth::user()){
+                abort(401,'Войдите пожалуйста');
+            }
+            if (!(Auth::user()->id == $paste->user_id)){
+                abort(403, 'Это не твоя паста дружище');
+            }
+        }
         
         return view('show', compact('paste'));
+    }
+
+    public function userPastes()
+    {
+        $user_id = Auth::user()->id;
+        $pastes = Paste::whereUserId($user_id)->whereAcceptPublic(0)->orWhere('accept_public',2)->paginate(4);
+        return view('user_paste', compact('pastes'));
     }
 }
