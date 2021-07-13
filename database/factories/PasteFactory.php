@@ -31,10 +31,16 @@ class PasteFactory extends Factory
             4 => '1 week',
             5 => '1 months',
         ];
+        $lang = [
+            0 => 'php',
+            1 => 'js',
+            2 => 'html',
+        ];
         return [
             'name' => $this->faker->name(),
             'timer' => Carbon::now()->add($iter[rand(0,5)]),
             'text' => $this->faker->realText(200),
+            'change_lang' => $lang[rand(0,2)],
         ];
     }
 }

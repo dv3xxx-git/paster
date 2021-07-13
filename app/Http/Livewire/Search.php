@@ -12,7 +12,9 @@ class Search extends Component
     public function render()
     {
         $searchTerm = '%' . $this->searchTerm . '%';
-        $this->pastes = Paste::where('name', 'like', $searchTerm)->get();
+        $this->pastes = Paste::where('name', 'like', $searchTerm)
+            ->orWhere('text', 'like', $searchTerm)
+            ->get();
         return view('livewire.search');
     }
 }

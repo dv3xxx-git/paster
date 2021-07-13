@@ -3,9 +3,9 @@
 @section('content')
 
 <br>
+<livewire:search />
 <div style="width: 50%;">
     <div>
-        <livewire:search />
         <ul>
             @foreach($pastes as $paste)
             <li>
