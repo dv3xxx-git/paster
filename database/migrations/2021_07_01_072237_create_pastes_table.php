@@ -19,9 +19,14 @@ class CreatePastesTable extends Migration
             $table->string('name');
             $table->dateTime('timer')->nullable();
             $table->string('text');
+            $table->string('change_lang');
             $table->boolean('accept_timer')->default(0);
             $table->boolean('accept_public')->default(0);
             $table->string('hash')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade')->onupdate('cascade');
         });
     }
 

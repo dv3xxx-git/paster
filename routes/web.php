@@ -4,6 +4,7 @@ use App\Http\Controllers\PasteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,13 @@ use App\Http\Controllers\SocialController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [PasteController::class,'index']);
 Auth::routes();
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/vk/auth', [SocialController::class, 'vk'])->name('vk.auth');
     Route::get('/vk/auth/callback', [SocialController::class, 'callback']);
 });
-
+Route::get('/user', [PasteController::class, 'userPastes'])->middleware('auth')->name('privePaste');
 Route::resource('/paste', PasteController::class);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
