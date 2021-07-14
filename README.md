@@ -1,7 +1,7 @@
 # Laravel
 ## Requirements
-    PHP >=8.0
-    [composer](https://getcomposer.org)
+https://getcomposer.org
+https://www.docker.com/get-started
 
 ## Installation
 

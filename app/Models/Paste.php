@@ -23,7 +23,7 @@ class Paste extends Model
     {
         $statusType = [
             0 => 'public',
-            1 => 'non public',
+            1 => 'unlisted',
             2 => 'private',
         ];
 
