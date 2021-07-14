@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <br>
 <livewire:search />
 <div style="width: 50%;">
