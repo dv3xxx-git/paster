@@ -1,8 +1,8 @@
 # Laravel
 ## Requirements
-https://getcomposer.org
+**https://getcomposer.org**
 
-https://www.docker.com/get-started
+**https://www.docker.com/get-started**
 
 ## Installation
 ```
