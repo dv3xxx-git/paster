@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Paste;
+use App\Services\HashService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +23,6 @@ class PasteFactory extends Factory
      */
     public function definition()
     {
-        //  10m 1h 3h 1d 1w 1m
         $iter = [
             0 => '10 minutes',
             1 => '1 hours',
@@ -41,6 +41,9 @@ class PasteFactory extends Factory
             'timer' => Carbon::now()->add($iter[rand(0,5)]),
             'text' => $this->faker->realText(200),
             'change_lang' => $lang[rand(0,2)],
+            'hash' => HashService::createHash(rand(1,50)),
+            'accept_public' => rand(0,2),
+            'accept_timer' => rand(0,1),
         ];
     }
 }

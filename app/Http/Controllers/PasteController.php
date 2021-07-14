@@ -6,7 +6,6 @@ use App\Http\Requests\PasteRequest;
 use App\Models\Paste;
 use App\Services\HashService;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PasteController extends Controller
@@ -16,7 +15,6 @@ class PasteController extends Controller
         $pastes = Paste::whereAcceptTimer(0)->whereAcceptPublic(0)
             ->orderByRaw('created_at DESC')
             ->get();
-
         return view('pastes', compact('pastes'));
     }
 
@@ -49,7 +47,6 @@ class PasteController extends Controller
     public function show($hash)
     {
         $paste = Paste::whereHash($hash)->whereAcceptTimer(0)->first();
-        
         if ($paste->accept_public == 'private'){
             if (!Auth::user()){
                 abort(401,'Войдите пожалуйста');
